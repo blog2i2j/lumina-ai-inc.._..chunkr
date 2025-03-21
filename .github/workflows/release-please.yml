@@ -7,6 +7,12 @@ on:
     paths-ignore:
       - 'compose.yaml'
       - 'compose-cpu.yaml'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to build'
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -17,23 +23,24 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     outputs:
-      releases_created: ${{ steps.release.outputs.releases_created }}
-      release_tag: ${{ steps.release.outputs.tag_name }}
+      releases_created: ${{ steps.release.outputs.releases_created || github.event_name == 'workflow_dispatch' }}
+      release_tag: ${{ steps.release.outputs.tag_name || format('{0}', github.event.inputs.tag) }}
     steps:
       - uses: googleapis/release-please-action@v4
         id: release
+        if: ${{ github.event_name != 'workflow_dispatch' }}
         with:
           config-file: .release-please-config.json
           manifest-file: .release-please-manifest.json
 
       - name: Debug releases created
         run: |
-          echo "Releases created: ${{ steps.release.outputs.releases_created }}"
-          echo "Release tag: ${{ steps.release.outputs.tag_name }}"
+          echo "Releases created: ${{ steps.release.outputs.releases_created || github.event_name == 'workflow_dispatch' }}"
+          echo "Release tag: ${{ steps.release.outputs.tag_name || format('{0}', github.event.inputs.tag) }}"
   
   build-and-publish:
-    needs: release-please
-    if: ${{ needs.release-please.outputs.releases_created == 'true' }}
+    needs: [release-please]
+    if: ${{ (github.event_name == 'workflow_dispatch') || (needs.release-please.outputs.releases_created == 'true') }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -56,8 +63,12 @@ jobs:
       - name: Extract version without 'v' prefix
         id: version
         run: |
-          TAG="${{ needs.release-please.outputs.release_tag }}"
-          echo "VERSION=${TAG#v}" >> $GITHUB_OUTPUT
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "VERSION=${{ github.event.inputs.tag }}" >> $GITHUB_OUTPUT
+          else
+            TAG="${{ needs.release-please.outputs.release_tag }}"
+            echo "VERSION=${TAG#v}" >> $GITHUB_OUTPUT
+          fi
       
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
@@ -71,7 +82,7 @@ jobs:
 
   update-compose-files:
     needs: [release-please]
-    if: ${{ needs.release-please.outputs.releases_created == 'true' }}
+    if: ${{ (github.event_name == 'workflow_dispatch') || (needs.release-please.outputs.releases_created == 'true') }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -85,8 +96,12 @@ jobs:
       - name: Extract version from tag
         id: get_version
         run: |
-          VERSION="${{ needs.release-please.outputs.release_tag }}"
-          echo "VERSION=${VERSION#v}" >> $GITHUB_OUTPUT
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "VERSION=${{ github.event.inputs.tag }}" >> $GITHUB_OUTPUT
+          else
+            VERSION="${{ needs.release-please.outputs.release_tag }}"
+            echo "VERSION=${VERSION#v}" >> $GITHUB_OUTPUT
+          fi
       
       - name: Update compose.yaml
         run: |
@@ -107,3 +122,55 @@ jobs:
           branch: update-compose-files-${{ steps.get_version.outputs.VERSION }}
           base: main
           delete-branch: true
+
+  publish-python-client:
+    needs: [release-please]
+    if: ${{ (github.event_name == 'workflow_dispatch') || (needs.release-please.outputs.releases_created == 'true') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+        
+      - name: Check if python client was updated
+        id: check-python
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "PUBLISH_PYTHON=true" >> $GITHUB_OUTPUT
+          else
+            # Get the previous tag to compare changes
+            PREVIOUS_TAG=$(git describe --tags --abbrev=0 --exclude=${{ needs.release-please.outputs.release_tag }} $(git rev-list --tags --max-count=1))
+            echo "Comparing changes between $PREVIOUS_TAG and ${{ needs.release-please.outputs.release_tag }}"
+            
+            # Check if pyproject.toml was modified
+            if git diff --name-only $PREVIOUS_TAG ${{ needs.release-please.outputs.release_tag }} | grep -q "clients/python-client/pyproject.toml"; then
+              echo "Python client pyproject.toml was updated"
+              echo "PUBLISH_PYTHON=true" >> $GITHUB_OUTPUT
+            else
+              echo "Python client pyproject.toml was not updated"
+              echo "PUBLISH_PYTHON=false" >> $GITHUB_OUTPUT
+            fi
+          fi
+      
+      - name: Set up Python
+        if: steps.check-python.outputs.PUBLISH_PYTHON == 'true'
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      
+      - name: Install uv
+        if: steps.check-python.outputs.PUBLISH_PYTHON == 'true'
+        run: pip install uv
+      
+      - name: Build package
+        if: steps.check-python.outputs.PUBLISH_PYTHON == 'true'
+        working-directory: ./clients/python-client
+        run: uv build
+      
+      - name: Publish to PyPI
+        if: steps.check-python.outputs.PUBLISH_PYTHON == 'true'
+        working-directory: ./clients/python-client
+        env:
+          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        run: uv publish --token $PYPI_TOKEN

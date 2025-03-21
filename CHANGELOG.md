@@ -5,6 +5,51 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.1](https://github.com/lumina-ai-inc/chunkr/compare/v1.6.0...v1.6.1) (2025-03-21)
+
+
+### Bug Fixes
+
+* **client:** Polling would error out on httpx.ReadTimeout ([#400](https://github.com/lumina-ai-inc/chunkr/issues/400)) ([aea1255](https://github.com/lumina-ai-inc/chunkr/commit/aea125533063de8bbddb36741aed5c1c07ba693b))
+* **core:** Allow PDFs based on extension if the pages can be counted ([#396](https://github.com/lumina-ai-inc/chunkr/issues/396)) ([cfbfd01](https://github.com/lumina-ai-inc/chunkr/commit/cfbfd0155f5fcfb6245acc7dbedb1baa0b12df0b))
+* **core:** Auto-fix clippy warnings ([#393](https://github.com/lumina-ai-inc/chunkr/issues/393)) ([0605227](https://github.com/lumina-ai-inc/chunkr/commit/06052278229f0fe1c6feec44172e9048bf09ecc1))
+* Fixed prompts and retries for LLMs ([#394](https://github.com/lumina-ai-inc/chunkr/issues/394)) ([4b31588](https://github.com/lumina-ai-inc/chunkr/commit/4b3158889747214abc00ee35c634659491e1c07d))
+
+## [1.6.0](https://github.com/lumina-ai-inc/chunkr/compare/v1.5.1...v1.6.0) (2025-03-20)
+
+
+### Features
+
+* Added new cropped image viewing, updated upload component defaults for image VLM processing, and some bug fixes for segment highlighting + JSON viewing ([#388](https://github.com/lumina-ai-inc/chunkr/issues/388)) ([6115ee0](https://github.com/lumina-ai-inc/chunkr/commit/6115ee08b785e94ed8432e4c75da98e32a42bea9))
+
+
+### Bug Fixes
+
+* **core:** Auto-fix clippy warnings ([#386](https://github.com/lumina-ai-inc/chunkr/issues/386)) ([ccb56f9](https://github.com/lumina-ai-inc/chunkr/commit/ccb56f95212e5840d931893929c6dec648123e34))
+* **core:** Update default generation strategies for Picture and Page segments ([5316485](https://github.com/lumina-ai-inc/chunkr/commit/5316485aeec2f923f6fb24f9ab1fcab18e275299))
+* Downgraded cuda version for doctr ([36db353](https://github.com/lumina-ai-inc/chunkr/commit/36db353079aaf56fd4613ea13b3c88e7d678e897))
+
+## [1.5.1](https://github.com/lumina-ai-inc/chunkr/compare/v1.5.0...v1.5.1) (2025-03-16)
+
+
+### Bug Fixes
+
+* Added imagemagick to docker images ([d3ac921](https://github.com/lumina-ai-inc/chunkr/commit/d3ac9215f0c570269ba16f3855512da606fd3d4c))
+* Added retry when finish reason is length ([#383](https://github.com/lumina-ai-inc/chunkr/issues/383)) ([a8dd777](https://github.com/lumina-ai-inc/chunkr/commit/a8dd77791d7294e7166a430776a329e53b0a8103))
+* Correct Rust lint workflow configuration ([0b1a1eb](https://github.com/lumina-ai-inc/chunkr/commit/0b1a1ebdf42a2c22ddfcff52fb7356ebb4216287))
+
+## [1.5.0](https://github.com/lumina-ai-inc/chunkr/compare/v1.4.2...v1.5.0) (2025-03-13)
+
+
+### Features
+
+* **core:** Added compatibility to Google AI Studio ([#380](https://github.com/lumina-ai-inc/chunkr/issues/380)) ([f56b74c](https://github.com/lumina-ai-inc/chunkr/commit/f56b74c23d1bb0faf050c54a74437139dc9a6938))
+
+
+### Bug Fixes
+
+* Fix keycloak tag ([df9efa5](https://github.com/lumina-ai-inc/chunkr/commit/df9efa5e212a517020e47d66c3820e62ca87acf2))
+
 ## [1.4.2](https://github.com/lumina-ai-inc/chunkr/compare/v1.4.1...v1.4.2) (2025-03-12)
 
 

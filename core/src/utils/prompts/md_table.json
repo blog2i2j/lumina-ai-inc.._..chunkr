@@ -1,0 +1,17 @@
+[
+  {
+    "role": "user",
+    "content": "The image provided is a table/tables. Convert it to Markdown perfectly. Pay close attention to preserve merged columns and cells. \nSometimes there are graphics or images within the table. If there are, describe the graphic or image in text within the Markdown.\nOutput the table directly in ```markdown``` tags."
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "{image_url}"
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "role": "user",
+    "content": "Describe the image provided in text. Be detailed, include any visable text. Use HTML (<p> or <table>) to structure the text. Output the text directly in ```html``` tags."
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "{image_url}"
+        }
+      }
+    ]
+  }
+]

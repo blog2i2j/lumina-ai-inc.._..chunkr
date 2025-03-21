@@ -1,0 +1,17 @@
+[
+  {
+    "role": "user",
+    "content": "OCR the table and convert it to HTML. Output the HTML directly in ```html``` tags."
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "{image_url}"
+        }
+      }
+    ]
+  }
+]
