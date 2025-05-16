@@ -1,5 +1,42 @@
 # Changelog
 
+## [1.12.0](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/compare/chunkr-core-v1.11.1...chunkr-core-v1.12.0) (2025-05-16)
+
+
+### Features
+
+* Added configuration for `error_handling` which allows you to choose between `Fail` or `Continue` on non-critical errors ([0baca0a](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/0baca0a519b44d139f64d02bec754f259ed329de))
+* Added doctr small dockers ([#407](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/407)) ([9b8a56e](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/9b8a56e273f39aa15d3001c6f7ccb707900dd584))
+* Added extended context (full page + segment) in `segment_processing` ([#480](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/480)) ([542377b](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/542377b904aef5fb215bdea3f837315a23eb37de))
+* Added release please for automated releases ([#363](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/363)) ([d808d4e](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/d808d4e72464b83590dfab73fe973e2f98b4f7e7))
+* Added span class instructions for all formula prompts ([#489](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/489)) ([5162f8f](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/5162f8f02fabe8eb0a0f99de1373c5295d3f9ddd))
+* Allow users to choose an LLM model to use for `segment_processing` by setting the `llm_processing.model_id` param in the POST and PATCH request. The available models can be configured using the `models.yaml` file. ([#437](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/437)) ([ea526c4](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/ea526c4c48692ae5d8a9ba00b70008ce238a4c14))
+* Chunking can now be configured using `embed_sources` in `segment_processing.{segment_type}` configuration and allows the choice of pre-configured tokenizers or any huggingface tokenizer by setting the `tokenizer` field in `chunk_processing` ([#420](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/420)) ([d88ac64](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/d88ac646ece3935f1c7fcd028bb6c5df0b7d00d3))
+* **core:** Added compatibility to Google AI Studio ([#380](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/380)) ([f56b74c](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/f56b74c23d1bb0faf050c54a74437139dc9a6938))
+* **core:** Improved image uploads to pdf conversion and added checkbox support ([a2b65ed](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/a2b65ed182dcc07af1bccc5b4e98dec3a3335ed8))
+* **core:** Remove rrq dependency and improve memory management ([92b70dc](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/92b70dceb1188cec926e415ff295127a3fb085cc))
+* Fixed reading of text layer (prevent whitespace inbetween words) ([#461](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/461)) ([8eba7d3](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/8eba7d36d108c736f0d0ca658cf90716c2c0c544))
+* New picture prompts ([#405](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/405)) ([d161fa0](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/d161fa0820fc03ffaf9bdbbf58c124179548a31a))
+* Update web to use `/task/parse` API route and added `error_handling`, `llm_processing`, `embed_sources` and tokenization settings in the upload component ([#450](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/450)) ([b1a6aef](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/b1a6aef41ff8d73daa9ba435e37219b98c765524))
+
+
+### Bug Fixes
+
+* Add Default trait implementation to FallbackStrategy enum ([#479](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/479)) ([d9a2eaf](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/d9a2eaf86470d82e8dfed9af874d3cc49ca76ba5))
+* Added retry when finish reason is length ([#383](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/383)) ([a8dd777](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/a8dd77791d7294e7166a430776a329e53b0a8103))
+* **core:** Allow PDFs based on extension if the pages can be counted ([#396](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/396)) ([cfbfd01](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/cfbfd0155f5fcfb6245acc7dbedb1baa0b12df0b))
+* **core:** Auto-fix clippy warnings ([#386](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/386)) ([ccb56f9](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/ccb56f95212e5840d931893929c6dec648123e34))
+* **core:** Auto-fix clippy warnings ([#393](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/393)) ([0605227](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/06052278229f0fe1c6feec44172e9048bf09ecc1))
+* **core:** Handle null started_at values with COALESCE in timeout job ([d068be8](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/d068be82b972a6cd830234448e4bbfe5ebb5245a))
+* **core:** Update default generation strategies for Picture and Page segments ([5316485](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/5316485aeec2f923f6fb24f9ab1fcab18e275299))
+* Debugging please release with core changes ([558a6f9](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/558a6f9fd86c5d6e53b770dd48909a3a60e7f110))
+* Default trait added to chunk processing ([20c6f15](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/20c6f15bf5ef1a538413147103313e65e1223e47))
+* Fixed prompts and retries for LLMs ([#394](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/394)) ([4b31588](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/4b3158889747214abc00ee35c634659491e1c07d))
+* Fixed timeout query ([97950e5](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/97950e54aaa9c10cc5ce42f75600603c27d73168))
+* Formula prompt selection bug ([#484](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/484)) ([3b0942b](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/3b0942b4745739199aa6a8ef11567f05acf4d4cc))
+* Rmeoved changelog from core ([b658a63](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/b658a6373baee8cba156d7272a8c91accda0e0e8))
+* Updated hashmap to lru for caching ([d868c76](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/d868c76dd16a6751e3baab43190b81e827e26395))
+
 ## [1.11.1](https://github.com/lumina-ai-inc/chunkr/compare/chunkr-core-v1.11.0...chunkr-core-v1.11.1) (2025-05-06)
 
 
