@@ -1,5 +1,40 @@
 # Changelog
 
+## [3.0.0](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/compare/chunkr-web-v2.2.0...chunkr-web-v3.0.0) (2025-08-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* consolidate HTML/markdown generation into single format choice
+
+### Features
+
+* Added blog pages to frontend - hooked up to Contentful CMS + env toggle for Blog page ([#531](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/531)) ([90d6dd8](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/90d6dd88aa5e6cd0bb0580185a6f4fbf3523e35d))
+* Added extended context (full page + segment) in `segment_processing` ([#480](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/480)) ([542377b](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/542377b904aef5fb215bdea3f837315a23eb37de))
+* Added new cropped image viewing, updated upload component defaults for image VLM processing, and some bug fixes for segment highlighting + JSON viewing ([#388](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/388)) ([6115ee0](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/6115ee08b785e94ed8432e4c75da98e32a42bea9))
+* Added new frontend pdfs in new landing page ([#490](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/490)) ([bbaf911](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/bbaf911f205b2f81b723577155e6b5adff246a65))
+* Added task level analytics to usage page ([#498](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/498)) ([e4d63ff](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/e4d63ffb86c9d790c8bb13cf0cf71642d2f19e2b))
+* Added task retries, started at time, border boxes and more UI enhancements for special segment types like tables, formulas and image descriptions, modified self-host tier based usage section and always showing overage ticker ([#460](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/460)) ([40a4a69](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/40a4a6987f82fa01a5cadcbedeee4264bcdb7916))
+* Consolidate HTML/markdown generation into single format choice ([a974f3f](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/a974f3fbc2bd9158ca052c21a121b479e0eb7613))
+* **core:** Improved image uploads to pdf conversion and added checkbox support ([a2b65ed](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/a2b65ed182dcc07af1bccc5b4e98dec3a3335ed8))
+* Created a stable and simple version by removing all extra/unused components ([#570](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/570)) ([7a444ea](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/7a444eac4cab1e4f811997fc513a9f2db97aa5b3))
+* Redesign keycloak auth pages ([adaf74b](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/adaf74b2c57b37779794e9e3c736905b02bccff3))
+* Update web to use `/task/parse` API route and added `error_handling`, `llm_processing`, `embed_sources` and tokenization settings in the upload component ([#450](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/450)) ([b1a6aef](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/b1a6aef41ff8d73daa9ba435e37219b98c765524))
+
+
+### Bug Fixes
+
+* **core:** Auto-fix clippy warnings ([#518](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/518)) ([238f47f](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/238f47fdaf5d2e62d12448424d1018eb1803b8f8))
+* List style points visible now ([#476](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/476)) ([95a9844](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/95a98449bf6b6c8f0befd728ceb8206656966b8d))
+* Llm models are now fetched from `VITE_API_URL` ([#457](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/457)) ([06ce1ea](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/06ce1eaa98048753fd065ddb00908b54914f4857))
+* Remove keycloakify theme ([ea46cbe](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/ea46cbea3e6d6abca04f2c79f8c5bd75d496ac7b))
+* Reverted landing page hero image ([#548](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/548)) ([e798336](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/e7983361fdbb9243c055f2444cacb55aa6072a78))
+* Solved latex rendering errors and final viewer optimizations in place ([#472](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/472)) ([1fd05c4](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/1fd05c4ca3b499ddeb7549dbf03988a4e30ea1a8))
+* Stored cross-site scripting in segmentchunk component ([#546](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/546)) ([49334b7](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/49334b788e742f7453c8987e856b57dcb56f0773))
+* Update default for high resolution to true ([#536](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/536)) ([37cc757](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/37cc757ea41acce4a662a127bc141e77b56cda03))
+* Update robots.txt and blog post page, added sitemap, and removed toast from auth  ([#535](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/535)) ([3c8f827](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/3c8f82701d4ff40f932b24607da2dfd394f31e60))
+* Viewer optimizations and momentum scroll fix ([#466](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/466)) ([671f840](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/671f84083eb796b9a120e3ad3f57c7a61cbfcde3))
+
 ## [2.2.0](https://github.com/lumina-ai-inc/chunkr/compare/chunkr-web-v2.1.1...chunkr-web-v2.2.0) (2025-07-30)
 
 

@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.1.7](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/compare/chunkr-services-v0.1.6...chunkr-services-v0.1.7) (2025-08-19)
+
+
+### Features
+
+* Added doctr small dockers ([#407](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/407)) ([9b8a56e](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/9b8a56e273f39aa15d3001c6f7ccb707900dd584))
+* **core:** Improved image uploads to pdf conversion and added checkbox support ([a2b65ed](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/a2b65ed182dcc07af1bccc5b4e98dec3a3335ed8))
+* Created a stable and simple version by removing all extra/unused components ([#570](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/570)) ([7a444ea](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/7a444eac4cab1e4f811997fc513a9f2db97aa5b3))
+
+
+### Bug Fixes
+
+* **core:** Auto-fix clippy warnings ([#518](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/518)) ([238f47f](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/238f47fdaf5d2e62d12448424d1018eb1803b8f8))
+* Replaced vgt with yolo model as it's more practical for consumer hardware ([ff4b906](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/ff4b9063eaa0fabc14586d1176ec528fe77e2fa0))
+* Resolve logger warnings ([#510](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/510)) ([8810d5e](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/8810d5ec1ce03c12daa1bee98afed3fb2386cf5a))
+* Updated problematic ML dependencies ([#468](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/issues/468)) ([5e60961](https://github.com/blog2i2j/lumina-ai-inc.._..chunkr/commit/5e6096122d333b832c8fff1437cb47f70979683e))
+
 ## [0.1.6](https://github.com/lumina-ai-inc/chunkr/compare/chunkr-services-v0.1.5...chunkr-services-v0.1.6) (2025-07-31)
 
 
